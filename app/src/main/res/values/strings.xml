@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TodoList</string>
+    <string name="enter_note">Enter note:</string>
+    <string name="add_note_save">SAVE</string>
+    <string name="add_note_high">High</string>
+    <string name="add_note_medium">Medium</string>
+    <string name="add_note_low">Low</string>
+</resources>
