@@ -4,22 +4,24 @@ import java.util.ArrayList;
 
 public class DataBase {
 
-    private ArrayList<Note> notes = new ArrayList<>();
+    private final ArrayList<Note> notes = new ArrayList<>();
 
     private static DataBase instance = null;
 
-    public static DataBase getInstance(){
-        if (instance == null){
+    public static DataBase getInstance() {
+        if (instance == null) {
             instance = new DataBase();
         }
         return instance;
     }
-    private DataBase(){}
-    public void add(Note note){
+
+    private DataBase() {}
+
+    public void add(Note note) {
         notes.add(note);
     }
 
-    public void remove(int id){
+    public void remove(int id) {
         notes.removeIf(note -> note.getId() == id);
     }
 

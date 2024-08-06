@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddNoteActivityV1 extends AppCompatActivity {
+public class AddNoteActivity extends AppCompatActivity {
 
     private TextView textViewEnterNote;
     private RadioButton radioButtonLow;
@@ -27,7 +27,7 @@ public class AddNoteActivityV1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (textViewEnterNote.getText().toString().isEmpty()) {
-                    Toast.makeText(AddNoteActivityV1.this, "Запишите заметку", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNoteActivity.this, "Запишите заметку", Toast.LENGTH_SHORT).show();
                 } else {
                     saveNote();
                 }
@@ -66,7 +66,7 @@ public class AddNoteActivityV1 extends AppCompatActivity {
     }
 
     public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, AddNoteActivityV1.class);
+        Intent intent = new Intent(context, AddNoteActivity.class);
         return intent;
     }
 }
