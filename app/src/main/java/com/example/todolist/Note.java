@@ -1,7 +1,12 @@
 package com.example.todolist;
 
-public class Note {
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "notes") // Создание таблицы
+public class Note {
+    @PrimaryKey(autoGenerate = true) // Уникальный ключ для id
     private int id;
     private String text;
     private int priority;

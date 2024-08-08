@@ -25,14 +25,15 @@ public class MainActivity extends AppCompatActivity {
         initViews();
 
         notesAdapter = new NotesAdapter();
-        notesAdapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {
+        recyclerViewNotes.setAdapter(notesAdapter);
+
+        notesAdapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {//Устанавливаем слушатель нажатий на элементы списка. Когда пользователь нажимает на заметку, вызывается метод onNoteClick.
             @Override
             public void onNoteClick(Note note) {
                 dataBase.remove(note.getId());
                 showNotes();
             }
         });
-        recyclerViewNotes.setAdapter(notesAdapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback( // Удаление элементов по свайпу
                 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {

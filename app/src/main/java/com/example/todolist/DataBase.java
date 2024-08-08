@@ -1,6 +1,7 @@
 package com.example.todolist;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DataBase {
 
@@ -15,7 +16,8 @@ public class DataBase {
         return instance;
     }
 
-    private DataBase() {}
+    private DataBase() {
+    }
 
     public void add(Note note) {
         notes.add(note);

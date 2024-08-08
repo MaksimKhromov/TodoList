@@ -50,7 +50,6 @@ public class AddNoteActivity extends AppCompatActivity {
         Note note = new Note(id, textNote, priority);
         dataBase.add(note);
         finish();
-
     }
 
     private int getPriority() {
