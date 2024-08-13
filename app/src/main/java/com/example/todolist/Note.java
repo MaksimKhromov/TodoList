@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "notes") // Создание таблицы
 public class Note {
-    @PrimaryKey(autoGenerate = true) // Уникальный ключ для id
+    @PrimaryKey(autoGenerate = true) // Автогенирация уникального ключа для id
     private int id;
     private String text;
     private int priority;
