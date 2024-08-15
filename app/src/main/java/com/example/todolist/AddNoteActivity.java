@@ -30,7 +30,7 @@ public class AddNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_note_v1);
         initViews();
         viewModel = new ViewModelProvider(this).get(AddNoteViewModel.class);
-        viewModel.getShouldCloseScreen().observe(this, new Observer<Boolean>() {
+        viewModel.getShouldCloseScreen().observe(this, new Observer<Boolean>() { // Подписка на объект для отслеживание его изменений
             @Override
             public void onChanged(Boolean shouldClose) {
                 if (shouldClose) {
