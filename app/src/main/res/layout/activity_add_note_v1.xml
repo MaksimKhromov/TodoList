@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:hint="@string/enter_note"
+        android:inputType="textCapSentences"
         android:text=""
         android:textSize="32sp" />
 

@@ -3,35 +3,41 @@ package com.example.todolist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewNotes;
     private FloatingActionButton buttonAddNote;
-    private final DataBase dataBase = DataBase.getInstance();
     private NotesAdapter notesAdapter;
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);// Создание viewModel через ViewModelProvider
+
         initViews();
 
         notesAdapter = new NotesAdapter();
         recyclerViewNotes.setAdapter(notesAdapter);
 
-        notesAdapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {//Устанавливаем слушатель нажатий на элементы списка. Когда пользователь нажимает на заметку, вызывается метод onNoteClick.
+        viewModel.getNotes().observe(this, new Observer<List<Note>>() { // Отслеживание (подписка на объект) изменение элементов в БД
             @Override
-            public void onNoteClick(Note note) {
-                dataBase.remove(note.getId());
-                showNotes();
+            public void onChanged(List<Note> notes) {
+                notesAdapter.setNotes(notes); // Установка новых данных
             }
         });
 
@@ -48,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 Note note = notesAdapter.getNotes().get(position);
-                dataBase.remove(note.getId());
-                showNotes();
+                viewModel.remove(note);
             }
         });
+
         itemTouchHelper.attachToRecyclerView(recyclerViewNotes);
 
         buttonAddNote.setOnClickListener(new View.OnClickListener() {
@@ -66,15 +72,5 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
         buttonAddNote = findViewById(R.id.buttonAddNote);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        showNotes();
-    }
-
-    private void showNotes() {
-        notesAdapter.setNotes(dataBase.getNotes());
     }
 }

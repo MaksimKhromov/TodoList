@@ -10,10 +10,11 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
-    private ArrayList<Note> notes = new ArrayList<>();
+    private List<Note> notes = new ArrayList<>();
     private OnNoteClickListener onNoteClickListener; // Переменная для хранения ссылки на слушатель кликов (интерфейса) по заметкам
 
     public void setOnNoteClickListener(OnNoteClickListener onNoteClickListener) { // Метод для установки слушателя кликов, позволяет передать реализацию интерфейса
@@ -24,7 +25,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return new ArrayList<>(notes);
     }
 
-    public void setNotes(ArrayList<Note> notes) {
+    public void setNotes(List<Note> notes) {
         this.notes = notes;
         notifyDataSetChanged(); // Используется для определения что были добавлены новые данные
     }
@@ -60,7 +61,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() { //Устанавливаем обработчик кликов на весь элемент списка
             @Override
             public void onClick(View v) {
-                if(onNoteClickListener != null) {
+                if (onNoteClickListener != null) {
                     onNoteClickListener.onNoteClick(note); // Если слушатель установлен, вызываем его метод, и передаем текущуй элемент
                 }
             }
