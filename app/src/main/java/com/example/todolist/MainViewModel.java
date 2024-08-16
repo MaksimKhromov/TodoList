@@ -9,22 +9,22 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
-    private NoteDatabase noteDatabase;
+    private NotesDao notesDao;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        noteDatabase = NoteDatabase.getInstance(application);
+        notesDao = NoteDatabase.getInstance(application).notesDao();
     }
 
     public LiveData<List<Note>> getNotes() {
-        return noteDatabase.notesDao().getNotes();
+        return notesDao.getNotes();
     }
 
     public void remove(Note note) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                noteDatabase.notesDao().remove(note.getId());
+                notesDao.remove(note.getId());
             }
         });
         thread.start();

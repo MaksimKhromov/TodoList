@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(entities = {Note.class}, version = 1) // Объявляем какие таблицы в виде классов будут хранится в БД
-public abstract class NoteDatabase extends RoomDatabase {
+public abstract class NoteDatabase extends RoomDatabase { //Создаем БД
     private static NoteDatabase instance = null;
     private static final String DB_NAME = "notes.db";
     public static NoteDatabase getInstance(Application application) {

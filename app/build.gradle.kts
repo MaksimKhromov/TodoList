@@ -34,8 +34,13 @@ android {
 dependencies {
     val room_version = "2.6.1"
 
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-runtime:$room_version") //room для создания БД
+    annotationProcessor("androidx.room:room-compiler:$room_version") //room для создания БД
+    implementation("androidx.room:room-rxjava3:$room_version") //поддержкой room rxJava3
+
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.2") // rxJava для использования многопоточности
+    implementation("io.reactivex.rxjava3:rxjava:3.1.5") // rxJava для использования многопоточности
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

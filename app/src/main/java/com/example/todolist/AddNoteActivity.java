@@ -62,7 +62,6 @@ public class AddNoteActivity extends AppCompatActivity {
         int priority = getPriority();
         Note note = new Note(textNote, priority);
         viewModel.saveNote(note);
-
     }
 
     private int getPriority() {
